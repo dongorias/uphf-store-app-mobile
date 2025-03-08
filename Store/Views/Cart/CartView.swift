@@ -50,7 +50,9 @@ struct CartView: View {
         })
         
         .navigationDestination(isPresented: $deliveryInfoView ) {
-            DeliveryInfoView()
+            DeliveryInfoView {
+                self.deliveryInfoView = false
+            }
         }
         .onAppear{
             cartViewModel.loadCart()

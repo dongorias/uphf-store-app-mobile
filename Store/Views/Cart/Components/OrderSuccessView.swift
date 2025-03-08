@@ -11,7 +11,9 @@ struct OrderSuccessView: View {
     @StateObject private var checkoutViewModel = CheckoutViewModel()
     let orderId: String
     
-    @EnvironmentObject var tabMonitor: TabMonitor
+    
+    
+    var onClose: (() -> Void)?
     
     var body: some View {
         VStack(spacing: 32) {
@@ -47,8 +49,10 @@ struct OrderSuccessView: View {
             
             //   Bouton de retour
             Button(action:{
-                checkoutViewModel.resetView()
-                tabMonitor.selectedTab = 1
+               // checkoutViewModel.resetView()
+               // tabMonitor.selectedTab = 1
+                onClose?()
+                
                 
             }) {
                 Text("Retour à l'accueil")

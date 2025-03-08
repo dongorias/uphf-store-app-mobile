@@ -131,7 +131,7 @@ class CheckoutViewModel: ObservableObject {
             let order = Order(
                 id:self.orderId,
                 userId:self.authViewModel!.customer!.id, cart: self.cartItems,
-                total: self.totalAmount!, statut: "En cours de traitement", statutPayment: "Payé", address: ShippingAddress(
+                total: self.totalAmount!, statut: "En cours", statutPayment: "Payé", address: ShippingAddress(
                     fullName: self.fullName,
                     address: self.address,
                     city: self.city,

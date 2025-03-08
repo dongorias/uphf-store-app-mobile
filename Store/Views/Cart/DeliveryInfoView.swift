@@ -15,7 +15,11 @@ struct DeliveryInfoView: View {
     @StateObject private var checkoutViewModel = CheckoutViewModel()
     @StateObject private var cartViewModel = CartViewModel()
     
+    @EnvironmentObject var tabMonitor: TabMonitor
+    
     @State private var isValidated = false
+    
+    var onClose: (() -> Void)?
     
     var body: some View {
         
@@ -95,7 +99,13 @@ struct DeliveryInfoView: View {
         .navigationBarTitle("Livraison", displayMode: .inline)
         
         .navigationDestination(isPresented: $checkoutViewModel.orderIsCompleted){
-            OrderSuccessView(orderId: checkoutViewModel.orderId).navigationBarBackButtonHidden()
+            OrderSuccessView(orderId: checkoutViewModel.orderId, onClose: {
+                self.checkoutViewModel.resetView()
+                self.tabMonitor.selectedTab = 1
+                self.onClose?()
+                
+            }).navigationBarBackButtonHidden()
+            
         }
     }
     

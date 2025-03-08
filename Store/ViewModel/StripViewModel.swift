@@ -29,7 +29,7 @@ class StripViewModel: ObservableObject {
             case .failure(let error):
                 DispatchQueue.main.async {
                     completion(.failure(error))
-                    //                       self.errorMessage = "Error creating customer: \(error.localizedDescription)"
+                    
                 }
             }
         }
