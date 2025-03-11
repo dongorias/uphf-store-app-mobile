@@ -10,9 +10,10 @@ import StripePaymentSheet
 
 struct DeliveryInfoView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var checkoutViewModel: CheckoutViewModel
     @State private var navigateToAuth: Bool = false
     @StateObject private var locationViewModel = LocationViewModel()
-    @StateObject private var checkoutViewModel = CheckoutViewModel()
+   
     @StateObject private var cartViewModel = CartViewModel()
     
     @EnvironmentObject var tabMonitor: TabMonitor

@@ -45,11 +45,15 @@ class CheckoutViewModel: ObservableObject {
     private var cartRepository: CartRepository
     private var checkoutRepository: CheckoutRepository
     
+    @Published var isLoading = false
+    
     
     var authViewModel: AuthViewModel?
+    let firebaseAuth = Auth.auth()
      
      func setup(_ authViewModel: AuthViewModel) {
        self.authViewModel = authViewModel
+         self.fetchOrders()
      }
     
     init(
@@ -63,17 +67,24 @@ class CheckoutViewModel: ObservableObject {
         self.cartRepository = cartRepository
         self.checkoutRepository = checkoutRepository
         
-        fetchOrders()
+       // fetchOrders()
         
         
     }
     
     func fetchOrders() {
         Task {
-            if let uid = authViewModel?.user?.uid {
+            print("error==> befor fetch")
+            if let uid = firebaseAuth.currentUser?.uid {
+                print("error==> lauch fetch")
+                self.isLoading = true
                 self.orders = try await checkoutRepository.getOrders(uid)
+                self.isLoading = false
+                print("error==> after fetch")
                 
-            } 
+            } else{
+                print("error==> conditon not satistied in fetch")
+            }
             
         }
     }
@@ -86,10 +97,12 @@ class CheckoutViewModel: ObservableObject {
     }
     
     func cleanCart() {
+       // self.fetchOrders()
         self.cartRepository.clearCart()
     }
     
     func resetView() {
+       // self.fetchOrders()
         self.orderIsCompleted = false
     }
     

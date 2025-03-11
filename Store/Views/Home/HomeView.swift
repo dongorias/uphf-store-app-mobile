@@ -29,9 +29,7 @@ struct HomeView: View {
         }
         
         .onAppear {
-//            if(authViewModel.isLoggedIn){
-//                authViewModel.fetchCustomer()
-//            }
+
         }
         
     }

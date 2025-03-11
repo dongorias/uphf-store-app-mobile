@@ -18,7 +18,7 @@ struct DeliveryAddressView: View {
             }
             Spacer()
             
-            // Badge(count: 2)
+            
             Image(systemName: "bell")
                 .font(.title2)
         }.onAppear {

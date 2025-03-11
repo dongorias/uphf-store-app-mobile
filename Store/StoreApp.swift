@@ -23,17 +23,20 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct StoreApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @State var authViewModel: AuthViewModel
+    @State var checkoutViewModel: CheckoutViewModel
     
     
     init(){
         FirebaseApp.configure()
         self.authViewModel = AuthViewModel()
+        self.checkoutViewModel = CheckoutViewModel()
     }
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(authViewModel)
+                .environmentObject(checkoutViewModel)
             // Injection de l'AuthViewModel dans l'environnement
         }
     }

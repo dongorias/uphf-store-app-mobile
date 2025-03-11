@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct OrderSuccessView: View {
-    @StateObject private var checkoutViewModel = CheckoutViewModel()
+    
+
     let orderId: String
     
     
